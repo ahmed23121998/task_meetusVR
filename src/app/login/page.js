@@ -78,7 +78,9 @@ function Page() {
     >
       {/* Left: Login Card */}
       <div className="lg:w-1/3 w-full px-10 flex flex-col justify-center text-center">
-        <h1 className="text-[56px] mb-2">Welcome back</h1>
+        <h1 className="text-4xl lg:text-5xl font-bold mb-2 leading-tight">
+          Welcome back
+        </h1>
         <p className="text-gray-600 font-[400] text-l mb-8 text-wrap text-center">
           Step into our shopping metaverse for an unforgettable shopping
           experience
