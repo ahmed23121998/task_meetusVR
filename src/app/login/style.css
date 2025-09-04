@@ -1,0 +1,7 @@
+
+.background{
+
+  background-image: 
+  radial-gradient(circle at 65% 10%,rgba(174, 7, 174, 0.3) 0%, #e4ebf3,70%,transparent),
+  radial-gradient( circle 300px at 90% 80%, #5f3eab ,#e4ebf3);
+}
