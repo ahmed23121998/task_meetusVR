@@ -51,7 +51,11 @@ function Page() {
       }
 
       const userData = await userRes.json();
+
+      // Store user data in Redux
       dispatch(setUser(userData));
+
+      // Redirect to dashboard
       router.push("/dashboard");
     } catch (error) {
       setError(error.message || "An error occurred during login");
@@ -63,7 +67,11 @@ function Page() {
   const isLoginDisabled = !email || !password || !isValid || isLoading;
 
   return (
-    <div className="h-screen flex flex-col lg:flex-row bg-custom overflow-hidden">
+    <div
+      className="flex flex-col-reverse lg:flex-row px-2 mx-auto rounded-xl overflow-hidden    
+     bg-[#e4ebf3]   
+    background"
+    >
       {/* Left: Login Card */}
       <div className="lg:w-1/3 w-full px-4 sm:px-6 md:px-8 lg:px-10 py-8 lg:py-0 flex flex-col justify-center text-center">
         <h1
