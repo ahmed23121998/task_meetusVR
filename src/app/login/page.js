@@ -67,7 +67,7 @@ function Page() {
   const isLoginDisabled = !email || !password || !isValid || isLoading;
 
   return (
-    <div className="h-screen flex flex-col lg:flex-row bg-[#e4ebf3] overflow-hidden">
+    <div className="h-screen flex flex-col lg:flex-row bg-[#E9ECF2] overflow-hidden">
       {/* Left: Login Card */}
       <div className="lg:w-1/3 w-full px-4 sm:px-6 md:px-8 lg:px-10 py-8 lg:py-0 flex flex-col justify-center text-center">
         <h1
