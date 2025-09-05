@@ -1,7 +1,16 @@
-
-.background{
-
-  background-image: 
-  radial-gradient(circle at 65% 10%,rgba(174, 7, 174, 0.3) 0%, #e4ebf3,70%,transparent),
-  radial-gradient( circle 300px at 90% 80%, #5f3eab ,#e4ebf3);
+.background {
+  background-image: radial-gradient(
+      circle at 65% 10%,
+      rgba(174, 7, 174, 0.3) 0%,
+      #e4ebf3,
+      70%,
+      transparent
+    ),
+    radial-gradient(circle 300px at 90% 80%, #5f3eab, #e4ebf3);
+}
+.bg-custom {
+  background: radial-gradient(circle at -30% -30%, #9e77f6 0%, transparent 30%),
+    radial-gradient(circle at 50% -40%, #e477f6 0%, transparent 50%),
+    radial-gradient(circle at 20% 120%, #b0d2e5 0%, transparent 25%),
+    radial-gradient(circle at 95% 110%, #9e77f6 0%, transparent 30%), #ffffff; /* خلفية بيضا عشان الدمج يبقى ناعم */
 }

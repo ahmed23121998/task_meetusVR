@@ -29,7 +29,6 @@ function Page() {
     setError("");
 
     try {
-      // Step 1: Login API call
       const loginRes = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -41,12 +40,10 @@ function Page() {
         throw new Error(errorData.error || "Login failed");
       }
 
-      // Step 2: Get user info
       const userRes = await fetch("/api/user");
 
       if (!userRes.ok) {
         if (userRes.status === 401) {
-          // Token expired or invalid, stay on login page
           setError("Authentication failed. Please try again.");
           return;
         }
@@ -54,11 +51,7 @@ function Page() {
       }
 
       const userData = await userRes.json();
-
-      // Store user data in Redux
       dispatch(setUser(userData));
-
-      // Redirect to dashboard
       router.push("/dashboard");
     } catch (error) {
       setError(error.message || "An error occurred during login");
@@ -67,21 +60,32 @@ function Page() {
     }
   };
 
-  // Check if login button should be disabled
   const isLoginDisabled = !email || !password || !isValid || isLoading;
 
   return (
-    <div
-      className="flex flex-col-reverse lg:flex-row px-2 mx-auto rounded-xl overflow-hidden    
-     bg-[#e4ebf3]   
-    background"
-    >
+    <div className="h-screen flex flex-col lg:flex-row bg-custom overflow-hidden">
       {/* Left: Login Card */}
-      <div className="lg:w-1/3 w-full px-10 flex flex-col justify-center text-center">
-        <h1 className="text-4xl lg:text-5xl font-bold mb-2 leading-tight">
+      <div className="lg:w-1/3 w-full px-4 sm:px-6 md:px-8 lg:px-10 py-8 lg:py-0 flex flex-col justify-center text-center">
+        <h1
+          className="text-center mb-2 text-3xl sm:text-4xl md:text-5xl lg:text-5xl"
+          style={{
+            fontFamily: "ABeeZee",
+            fontWeight: 400,
+            lineHeight: "100%",
+            letterSpacing: "0%",
+            color: "#1A1A1E",
+          }}
+        >
           Welcome back
         </h1>
-        <p className="text-gray-600 font-[400] text-l mb-8 text-wrap text-center">
+        <p
+          className="text-[#62626B] font-[400] text-center mb-6 sm:mb-8 text-sm sm:text-base "
+          style={{
+            fontFamily: "ABeeZee",
+            lineHeight: "155%",
+            letterSpacing: "0%",
+          }}
+        >
           Step into our shopping metaverse for an unforgettable shopping
           experience
         </p>
@@ -92,7 +96,10 @@ function Page() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-3 sm:space-y-4 max-w-sm mx-auto w-full px-2"
+        >
           <div className="relative">
             <input
               type="email"
@@ -104,18 +111,16 @@ function Page() {
                 },
               })}
               placeholder="Email"
-              className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm sm:text-base"
             />
-            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-              >
-                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
-              </svg>
+            <span className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2">
+              <img
+                src="./sms.png"
+                alt="Email"
+                width={18}
+                height={18}
+                className="sm:w-5 sm:h-5"
+              />
             </span>
           </div>
           {errors.email && (
@@ -125,20 +130,6 @@ function Page() {
           )}
 
           <div className="relative">
-            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4M4.5 7A1.5 1.5 0 0 0 3 8.5v5A1.5 1.5 0 0 0 4.5 15h7A1.5 1.5 0 0 0 11.5 13.5v-5A1.5 1.5 0 0 0 11.5 7zM8 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3"
-                />
-              </svg>
-            </span>
             <input
               type="password"
               placeholder="Password"
@@ -146,8 +137,17 @@ function Page() {
                 required: "Password is required",
                 minLength: { value: 6, message: "At least 6 chars" },
               })}
-              className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 rounded-md bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-400 text-sm sm:text-base"
             />
+            <span className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2">
+              <img
+                src="./lock.png"
+                alt="Password"
+                width={18}
+                height={18}
+                className="sm:w-5 sm:h-5"
+              />
+            </span>
           </div>
           {errors.password && (
             <span className="text-red-500 text-sm mt-1 inline-block">
@@ -158,7 +158,7 @@ function Page() {
           <button
             type="submit"
             disabled={isLoginDisabled}
-            className="w-full py-2 rounded-md bg-purple-600 text-white font-semibold hover:bg-purple-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-2 sm:py-3 rounded-md bg-purple-600 text-white font-semibold hover:bg-purple-700 transition disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
           >
             {isLoading ? "Logging in..." : "Login"}
           </button>
@@ -176,8 +176,8 @@ function Page() {
       <div className="lg:w-2/3 gap-0 w-full lg:h-screen pt-5 flex flex-col items-center justify-center">
         <Image
           className=""
-          width={500}
-          height={500}
+          width={744}
+          height={523}
           alt="Hero"
           src="/image.png"
         />
