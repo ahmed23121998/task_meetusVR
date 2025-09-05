@@ -46,7 +46,6 @@ function Page() {
 
       if (!userRes.ok) {
         if (userRes.status === 401) {
-          // Token expired or invalid, stay on login page
           setError("Authentication failed. Please try again.");
           return;
         }
@@ -55,10 +54,8 @@ function Page() {
 
       const userData = await userRes.json();
 
-      // Store user data in Redux
       dispatch(setUser(userData));
 
-      // Redirect to dashboard
       router.push("/dashboard");
     } catch (error) {
       setError(error.message || "An error occurred during login");
@@ -67,11 +64,10 @@ function Page() {
     }
   };
 
-  // Check if login button should be disabled
   const isLoginDisabled = !email || !password || !isValid || isLoading;
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row bg-[#e4ebf3] overflow-x-hidden">
+    <div className="h-screen flex flex-col lg:flex-row bg-[#e4ebf3] overflow-hidden">
       {/* Left: Login Card */}
       <div className="lg:w-1/3 w-full px-4 sm:px-6 md:px-8 lg:px-10 py-8 lg:py-0 flex flex-col justify-center text-center">
         <h1
@@ -184,8 +180,8 @@ function Page() {
       <div className="lg:w-2/3 gap-0 w-full lg:h-screen pt-5 flex flex-col items-center justify-center">
         <Image
           className=""
-          width={500}
-          height={500}
+          width={744}
+          height={523}
           alt="Hero"
           src="/image.png"
         />
