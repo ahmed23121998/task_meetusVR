@@ -166,7 +166,7 @@ function Page() {
           <button
             type="submit"
             disabled={isLoginDisabled}
-            className="w-full py-2 sm:py-3 rounded-md bg-purple-600 text-white font-semibold hover:bg-purple-700 transition disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+            className="w-full py-2 sm:py-3 rounded-md btn-custom text-white font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
           >
             {isLoading ? "Logging in..." : "Login"}
           </button>
